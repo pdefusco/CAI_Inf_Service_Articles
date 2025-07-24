@@ -112,7 +112,7 @@ def create_client():
     # Replace get_jwt_token() with get_ums_jwt_token() if needed
     TOKEN = get_jwt_token()
     print(TOKEN)
-    BASE_URL = "https://modelregistry.[...].cloudera.site"
+    BASE_URL = os.environ["MODEL_REGISTRY_URL"]
     client = ModelRegistryClient(base_url=BASE_URL, bearer_token=TOKEN)
 
 #    list all the models
@@ -125,9 +125,9 @@ def create_client():
 
 #     create a new model
     new_model = client.create_model(
-        name="",
-        repo_id="/-",
-        hf_token=""
+        name="my-llama3b-instruct",
+        repo_id=os.environ["REPO_ID"],
+        hf_token=os.environ["HF_TOKEN"]
     )
     print("✅ Model Created:\n", new_model)
 
