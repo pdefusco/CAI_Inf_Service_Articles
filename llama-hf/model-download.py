@@ -110,7 +110,7 @@ class ModelRegistryClient:
 
 def create_client():
     # Replace get_jwt_token() with get_ums_jwt_token() if needed
-    TOKEN = get_jwt_token()
+    TOKEN = os.environ["CDP_TOKEN"]
     print(TOKEN)
     BASE_URL = os.environ["MODEL_REGISTRY_URL"]
     client = ModelRegistryClient(base_url=BASE_URL, bearer_token=TOKEN)
