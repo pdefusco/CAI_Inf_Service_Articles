@@ -18,7 +18,7 @@ CAI simplifies access to cutting-edge machine learning models through its integr
 
 ## Requirements
 
-This example was built with Private Cloud 1.5.5 and CAI 2.0.49 but it will also work in Public Cloud without any changes. You can reproduce this tutorial in your CAI environment with the following:
+This example was built with Cloudera On Prem Private Cloud 1.5.5, CAI Workbench 2.0.49, Inference Service 1.4.0 and AI Registry 1.7.0. The same example will also work in Public Cloud without any changes. You can reproduce this tutorial in your CAI environment with the following:
 
 * A HuggingFace Account and Token.
 * A local installation of the CDP CLI.
@@ -27,9 +27,7 @@ This example was built with Private Cloud 1.5.5 and CAI 2.0.49 but it will also 
 * An AI Inference Service deployment.
 * A Python 3.11 Cloudera AI Runtime with PBJ Workbench IDE, and another runtime with Python 3.11 and JupyterLab.
 
-The Private Cloud environment used for this example is not airgapped. If you are in an airgapped environment, you can still follow the steps shown in the the model deployment JupyterLab notebook as long as you have already completed the steps to download the model with the python script.
-
-For the extra steps to download the model in an airgapped environment, please use the documentation at this link: https://docs.cloudera.com/machine-learning/1.5.5/importing-model-airgapped/topics/ml-models-in-air-gapped-environment.html
+The Private Cloud environment used for this example is not airgapped. If you have an airgapped environment, you can still follow the steps shown in the the model deployment JupyterLab notebook as long as you have already completed the extra steps to download the model with the python script shown in the documentation: https://docs.cloudera.com/machine-learning/1.5.5/importing-model-airgapped/topics/ml-models-in-air-gapped-environment.html
 
 ## Useful Documentation Links
 
