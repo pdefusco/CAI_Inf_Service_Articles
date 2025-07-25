@@ -155,7 +155,7 @@ Come out of your project and open the Registered Model page. You should see an e
 
 ![alt text](../img/registry-download-1.png)
 
-![alt text](../img/registry-download-2.png)
+![alt text](../img/my-llama-complete-download.png)
 
 
 #### 6. Deploy the Model Programmatically
