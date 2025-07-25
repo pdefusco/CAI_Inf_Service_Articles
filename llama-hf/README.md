@@ -159,7 +159,6 @@ Come out of your project and open the Registered Model page. You should see an e
 
 ![alt text](../img/my-llama-complete-download.png)
 
-
 #### 6. Deploy the Model Programmatically
 
 Launch a new Session with JupyterLab. As before, you won't need a lot of resources:
@@ -171,7 +170,15 @@ Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 
 Open the ```model-deployment.ipynb``` notebook.
 
+![alt text](../img/deployment-in-progress-1.png)
 
+![alt text](../img/deployment-in-progress-2.png)
+
+![alt text](../img/endpoint-ready-1.png)
+
+![alt text](../img/endpoint-ready-2.png)
+
+![alt text](../img/endpoint-ready-3.png)
 
 ## Summary & Next Steps
 
