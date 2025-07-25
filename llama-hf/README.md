@@ -104,7 +104,7 @@ cdp --endpoint-url <your-cdp-console-endpoint> \
 
 * You can find the Inference Service Domain URL by looking up the Domain Field in the Inference Service UI:
 
-![alt text](../img/inference-service-domain.png)
+![alt text](../img/inference_service_domain.png)
 
 * The Repo ID is the source and name of the model as it appears in the Hugging Face Catalog. You can change the Repo ID if you want to deploy a different model. Otherwise, use the one provided above.
 
