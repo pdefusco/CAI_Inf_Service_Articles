@@ -176,6 +176,8 @@ Come out of your project and open the Registered Model page. You should see an e
 
 ![alt text](../img/my-llama-complete-download.png)
 
+Before moving on, copy the Model ID from the Registered Model UI as shown above. You will need this next.
+
 
 #### 6. Deploy the Model Programmatically
 
