@@ -188,7 +188,7 @@ Kernel: Python 3.11 JupyterLab Standard
 Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 ```
 
-Open the ```model-deployment.ipynb``` notebook, update variables in the first cell as directed in the comments, and run it. Here is a high level breakdown of the most important functions in the notebook:
+Open the ```model-deployment.ipynb``` notebook; update variables in the first cell - such as Model ID - as directed in the comments, and run it. Here is a high level breakdown of the most important functions in the notebook:
 
 ##### 1. Deploy the Model from the AI Registry into the Inference Service:
 
