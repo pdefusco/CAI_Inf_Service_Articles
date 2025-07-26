@@ -4,6 +4,8 @@
 
 In this tutorial you will learn how to programmatically deploy Meta's Llama-3.1-8B-Instruct LLM to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your cluster.
 
+If you are looking to use a different model you can apply the same steps for any Hugging Face Catalog models and just update the model Repo ID.  
+
 ### Cloudera AI & LLM's
 
 Cloudera AI (CAI) is a platform that enables organizations to build, train, and deploy machine learning and artificial intelligence models at scale. One of its key features is the Cloudera AI Inference Service, which allows users to easily deploy large language models (LLMs) for real-time or batch inference. With Cloudera AI, data scientists and engineers can manage and serve LLMs like Llama, Mistral, or open-source GPT models using containerized environments and scalable infrastructure. This service supports secure, low-latency model serving, making it easier to integrate AI into enterprise applications.
@@ -46,8 +48,8 @@ All artifacts are included in this Git repository. You can clone or fork it as n
 Create a project with the following entries:
 
 ```
-Project Name: llama3b-instruct
-Project Description: Project to programmatically download and deploy llama3b-instruct from HF Catalog.
+Project Name: llama3.1 8B-instruct
+Project Description: Project to programmatically download and deploy llama3.1 8B-instruct from HF Catalog.
 Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 Runtimes:
   JupyterLab	Python 3.11	Standard	2025.06
