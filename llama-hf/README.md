@@ -2,9 +2,11 @@
 
 ## Objective
 
-In this tutorial you will learn how to programmatically deploy Meta's Llama-3.1-8B-Instruct LLM to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your cluster.
+With Cloudera AI, enterprises can download open source GenAI models and securely host them in their Public or Private Cloud, thus implementing their own LLM-powered applications while preventing proprietary information from being shared with closed-source model companies such as OpenAI.
 
-If you are looking to use a different model you can apply the same steps for any Hugging Face Catalog models and just update the model Repo ID.  
+In this tutorial you will learn how to programmatically deploy Meta's Llama-3.1-8B-Instruct LLM to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Data Center.
+
+If you'd like to use a different model you can apply the same steps for any language models available in the Hugging Face Catalog.  
 
 ### Cloudera AI & LLM's
 
