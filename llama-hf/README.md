@@ -1,4 +1,4 @@
-# Deploy Llama3b-Instruct to AI Inference Service from HF Catalog Programmatically
+# Deploy Llama 3.1 8B Instruct to AI Inference Service from HF Catalog Programmatically
 
 ## Objective
 
