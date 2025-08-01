@@ -36,3 +36,33 @@
 #
 # #  Author(s): Paul de Fusco
 #***************************************************************************/
+
+# Configure CDP control plane credentials
+
+access_key_id = getpass.getpass("Enter your CDP access key ID: ")
+private_key = getpass.getpass("Enter your CDP private key: ")
+configure_cdp("cdp_access_key_id", access_key_id)
+configure_cdp("cdp_private_key", private_key)
+
+CAII_DOMAIN = get_caii_domain()
+CDP_TOKEN = get_ums_jwt_token()
+
+REGISTRY_ENDPOINT = get_registry_endpoint()
+print(REGISTRY_ENDPOINT)
+
+model_details = get_model_details(REGISTRY_ENDPOINT, REGISTERED_MODEL_NAME_ONNX, CDP_TOKEN)
+version = get_most_recent_model_version(REGISTRY_ENDPOINT, model_details['id'], CDP_TOKEN)
+
+MODEL_ID = model_details['id']
+MODEL_VERSION = version
+
+
+ENDPOINT_NAME = "iris-onnx-nb"
+deploy_model_to_caii(CAII_DOMAIN, CDP_TOKEN, MODEL_ID, MODEL_VERSION, ENDPOINT_NAME)
+
+# Must return True before we go on to the next step
+ready = endpoint_is_ready(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
+print(ready)
+
+BASE_URL = get_endpoint_base_url(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
+print(BASE_URL)
