@@ -37,27 +37,47 @@
 # #  Author(s): Paul de Fusco
 #***************************************************************************/
 
-# Configure CDP control plane credentials
+# Import inference-related libraries
+import httpx
+import json
+import time
+import os
+import subprocess
+from urllib.parse import urlparse, urlunparse
+from typing import Optional, Dict, Any, List
 
+# Used while configuring CDP credentials config
+import getpass
+from llmops_utils.llmopsUtils import *
+
+# Configure CDP control plane credentials
 access_key_id = getpass.getpass("Enter your CDP access key ID: ")
 private_key = getpass.getpass("Enter your CDP private key: ")
 configure_cdp("cdp_access_key_id", access_key_id)
 configure_cdp("cdp_private_key", private_key)
 
-CAII_DOMAIN = get_caii_domain()
+ENVIRONMENT_NAME = "pdf-jul-25-cdp-env"
+
+CAII_DOMAIN = get_caii_domain(ENVIRONMENT_NAME)
 CDP_TOKEN = get_ums_jwt_token()
+print("CAI DOMAIN: ", CAII_DOMAIN)
+print("CDP TOKEN: ", CDP_TOKEN)
 
-REGISTRY_ENDPOINT = get_registry_endpoint()
-print(REGISTRY_ENDPOINT)
+REGISTRY_ENDPOINT = get_registry_endpoint(ENVIRONMENT_NAME)
+print("REGISTRY ENDPOINT: ", REGISTRY_ENDPOINT)
 
-model_details = get_model_details(REGISTRY_ENDPOINT, REGISTERED_MODEL_NAME_ONNX, CDP_TOKEN)
-version = get_most_recent_model_version(REGISTRY_ENDPOINT, model_details['id'], CDP_TOKEN)
+REGISTERED_MODEL_NAME = "deepseek-r1-distill-llama-8b"
+
+model_details = get_model_details(REGISTRY_ENDPOINT, REGISTERED_MODEL_NAME, CDP_TOKEN)
+print(model_details)
+
+MODEL_VERSION = get_most_recent_model_version(REGISTRY_ENDPOINT, model_details['id'], CDP_TOKEN)
 
 MODEL_ID = model_details['id']
-MODEL_VERSION = version
+print(MODEL_ID)
+print(MODEL_VERSION)
 
-
-ENDPOINT_NAME = "iris-onnx-nb"
+ENDPOINT_NAME = "deepseek-endpoint"
 deploy_model_to_caii(CAII_DOMAIN, CDP_TOKEN, MODEL_ID, MODEL_VERSION, ENDPOINT_NAME)
 
 # Must return True before we go on to the next step
