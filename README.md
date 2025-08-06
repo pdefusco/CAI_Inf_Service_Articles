@@ -8,6 +8,8 @@ In this tutorial you will learn how to programmatically deploy Meta's Llama-3.1-
 
 If you'd like to use a different model you can apply the same steps for any language models available in the Hugging Face Catalog.
 
+This example was built with Cloudera On Prem Private Cloud 1.5.5, CAI Workbench 2.0.49, Inference Service 1.4.0 and AI Registry 1.7.0. The same example will also work in Public Cloud without any changes.
+
 Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/llama-hf#deploy-llama-31-8b-instruct-to-ai-inference-service-from-hf-catalog-programmatically
 
 ### LLMOps Utils for Cloudera AI Inference Service
@@ -18,10 +20,14 @@ First, you will download the model to the Cloudera AI Registry; Then, you will c
 
 The LLMOps util and the overall tutorial is particularly tailored for CAI users who want to complete the end to end lifecycle - from LLM download to Endpoint - entirely in Python. If you'd like to use a different model you can apply the same steps for any language models available in the NGC Catalog.  
 
+This example was built with Cloudera On Cloud Public Cloud Runtime 7.3.1, CAI Workbench 2.0.50, Inference Service 1.4.0 and AI Registry 1.7.0. The same example will also work in Private Cloud with very minor changes.
+
 Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/blob/main/llmops_utils/README.md#llmops-utils-for-cloudera-ai-inference-service
 
 ### Train, Register, Deploy and Serve XGBoost Classifier to AI Inference Service Programmatically
 
 In this tutorial you will learn how to build an XGBoost classifier and deploy it to the Cloudera AI Inference Service. First, you will train and register the model with the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from your secure endpoint.
+
+This example was built with Cloudera On Cloud Public Cloud Runtime 7.3.1, CAI Workbench 2.0.50, Inference Service 1.4.0 and AI Registry 1.7.0. The same example will also work in Private Cloud without changes.
 
 Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/xgboost#train-register-deploy-and-serve-xgboost-classifier-to-ai-inference-service-programmatically
