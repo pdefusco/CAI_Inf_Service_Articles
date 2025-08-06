@@ -259,7 +259,7 @@ def get_endpoint_base_url(caii_domain, cdp_token, endpoint_name):
         print(f"Error describing {endpoint_name}: {e}")
 ```
 
-See additional methods in ```llmopsUtils/llmopsUtils.py```.
+See additional methods in [llmopsUtils/llmopsUtils.py](https://github.com/pdefusco/CAI_Inf_Service_Articles/blob/main/llmops_utils/llmopsUtils.py)
 
 ## Summary & Next Steps
 
