@@ -307,7 +307,7 @@ Explore these helpful tutorials and blogs to learn more about Cloudera AI, the A
    Community guide focused specifically on registering, versioning, and managing models: ([community.cloudera.com][6])
 
 6. **Cloudera AI Inference Service Overview (docs)**
-   Official documentation outlining architecture, APIs (OpenAI & standard protocols), GPU support, and registry integration: ([Cloudera][7])
+   Official documentation outlining architecture, APIs (OpenAI & standard protocols), GPU support, and registry integration: ([Cloudera][6])
 
 [1]: https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/llama-hf "[Tutorial] Deploy Llama 3.1 8B Instruct to AI Inference Service from HF Catalog Programmatically"
 [2]: https://www.cloudera.com/blog/business/deploy-and-scale-ai-applications-with-cloudera-ai-inference-service.html?utm_source=chatgpt.com "Deploy and Scale AI Applications With Cloudera AI Inference Service | Blog | Cloudera"
