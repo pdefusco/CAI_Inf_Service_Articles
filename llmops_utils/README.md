@@ -259,6 +259,8 @@ def get_endpoint_base_url(caii_domain, cdp_token, endpoint_name):
         print(f"Error describing {endpoint_name}: {e}")
 ```
 
+See additional methods in ```llmopsUtils/llmopsUtils.py```.
+
 ## Summary & Next Steps
 
 In this tutorial, we demonstrated how to programmatically download the LLaMA 3B–Instruct model from the Hugging Face Model Catalog and deploy it within the Cloudera AI ecosystem.
