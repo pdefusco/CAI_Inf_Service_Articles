@@ -2,13 +2,15 @@
 
 ## Objective
 
-With Cloudera AI, enterprises can download open source GenAI models and securely host them in their Public or Private Cloud, in order to implement LLM-powered applications while preventing proprietary information from being shared with LLM Service Providers such as OpenAI.
-
 In this tutorial you will learn how to programmatically deploy Deepseek R1 Distill Llama 8B to the Cloudera AI Inference Service programmatically using Python and an LLMOps Util.
 
 First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Data Center.
 
 The LLMOps util and the overall tutorial is particularly tailored for CAI users who want to complete the end to end lifecycle - from LLM download to Endpoint - entirely in Python. If you'd like to use a different model you can apply the same steps for any language models available in the NGC Catalog.  
+
+### Motivation
+
+With Cloudera AI, enterprises can download open source GenAI models and securely host them in their Public or Private Cloud, in order to implement LLM-powered applications while preventing proprietary information from being shared with LLM Service Providers such as OpenAI.
 
 ### Cloudera AI & LLM's
 
@@ -20,16 +22,21 @@ Cloudera AI (CAI) is a core component of Cloudera’s hybrid cloud data platform
 
 ### CAI Integration with NGC
 
+NVIDIA NGC (NVIDIA GPU Cloud) is a catalog of GPU-optimized AI, machine learning, and HPC software, including pre-trained models, model training scripts, and containers, designed to accelerate AI development and deployment. The integration of NVIDIA NGC with Cloudera's AI Model Hub and AI Registry enables seamless access to NGC’s curated models and resources within Cloudera’s unified AI platform. This integration streamlines the workflow for data scientists and ML engineers, allowing them to discover, import, fine-tune, and manage NGC models directly within Cloudera’s secure and governed enterprise environment, accelerating the path from experimentation to production.
 
 ## Requirements
 
-This example was built with Cloudera On Cloud Public Cloud Runtime 7.3.1, CAI Workbench 2.0.50, Inference Service 1.4.0 and AI Registry 1.7.0. The same example will also work in Private Cloud without any changes. You can reproduce this tutorial in your CAI environment with the following:
+This example was built with Cloudera On Cloud Public Cloud Runtime 7.3.1, CAI Workbench 2.0.50, Inference Service 1.4.0 and AI Registry 1.7.0.
+
+The same example will also work in Private Cloud aside from having to use root certs in the httpx client class. For an example of this, check the way the client is instantiated in [llama-hf/model-deployment.ipynb](https://github.com/pdefusco/CAI_Inf_Service_Articles/blob/main/llama-hf/model-deployment.ipynb).  
+
+You can reproduce this tutorial in your CAI environment with the following:
 
 * A local installation of the CDP CLI.
 * A CAI Environment in Private or Public Cloud.
 * An AI Registry deployment.
 * An AI Inference Service deployment.
-* The folloing ML Runtime should be available in your CAI Runtime Catalog and Project: ```pauldefusco/vscode4_cuda11_cml_runtime```
+* The following ML Runtime should be available in your CAI Runtime Catalog and Project: ```pauldefusco/vscode4_cuda11_cml_runtime```
 * You should have your CDP Workload User's Access Keys handy as you will need them to deploy the endpoint.
 
 If you have an airgapped environment with Cloudera On Prem, you can still follow the steps shown in the the model deployment JupyterLab notebook as long as you have already completed the extra steps to download the model with the python script shown in the documentation: https://docs.cloudera.com/machine-learning/1.5.5/importing-model-airgapped/topics/ml-models-in-air-gapped-environment.html
@@ -46,7 +53,19 @@ If you have an airgapped environment with Cloudera On Prem, you can still follow
 
 All artifacts are included in this Git repository. You can clone or fork it as needed. https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 
-#### 1. Download Deepseek via Cloudera AI Model Hub
+#### 1. Import VSCode Runtime in Runtime Catalog
+
+You must have Workbench Admin permissions in order to complete this step.
+
+Navigate to the Runtime Catalog and add the runtime ID ```pauldefusco/vscode4_cuda11_cml_runtime```. Then also add the Runtime to your Project during Project creation.
+
+![alt text](../img/runtime_catalog.png)
+
+![alt text](../img/runtime_catalog_2.png)
+
+![alt text](../img/runtime_project.png)
+
+#### 2. Download Deepseek via Cloudera AI Model Hub
 
 Navigate to the Model Hub UI. Import the model via the UI and wait for the download to complete.
 
@@ -58,7 +77,7 @@ You can check for progress in the AI Registry via the "Registered Models" UI.
 
 ![alt text](../img/registered_model.png)
 
-#### 2. Clone the Git Repository as a CAI Project
+#### 3. Clone the Git Repository as a CAI Project
 
 Create a project with the following entries:
 
@@ -67,15 +86,15 @@ Project Name: Deepseek Deployment
 Project Description: Project to programmatically deploy deepseek model to AI Registry Endpoint.
 Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 Runtimes:
-  JupyterLab	Python 3.11	Standard	2025.06
-  PBJ Workbench	Python 3.11	Standard	2025.06
+  PBJ Workbench	Python 3.11	Standard 2025.06
+  VsCode Python 3.10 Community 2023.11.1
 ```
 
 ![alt text](../img/project-wizard-1.png)
 
 ![alt text](../img/project-wizard-2.png)
 
-#### 3. Launch Session and Install Requirements
+#### 4. Launch Session and Install Requirements
 
 Launch a CAI Session with the VSCode runtime. Then run the following command in the Session terminal in order to install  project dependencies. If this is your first time using the runtime, you may have to install a Python plugin.
 
@@ -83,7 +102,7 @@ Launch a CAI Session with the VSCode runtime. Then run the following command in 
 pip3 install -r requirements.txt
 ```
 
-#### 4. Run the Llmops App
+#### 5. Run the Llmops App
 
 In the CAI Session, run the code. Enter your CDP User Management Access Keys when prompted. In the prompt, validate that model deployment has launched, and navigate to the Model Endpoints UI to check on progress.
 
