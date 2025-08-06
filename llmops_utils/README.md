@@ -2,7 +2,7 @@
 
 ## Objective
 
-In this tutorial you will learn how to programmatically deploy Deepseek R1 Distill Llama 8B to the Cloudera AI Inference Service programmatically using Python and an LLMOps Util.
+In this tutorial you will learn how to deploy Deepseek R1 Distill Llama 8B to the Cloudera AI Inference Service programmatically using Python and an LLMOps Util.
 
 First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Data Center.
 
