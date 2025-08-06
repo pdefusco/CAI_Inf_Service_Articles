@@ -52,7 +52,11 @@ Navigate to the Model Hub UI. Import the model via the UI and wait for the downl
 
 You can check for progress in the AI Registry via the "Registered Models" UI.
 
-![alt text](../img/registered-deepseek.png)
+![alt text](../img/import-model.png)
+
+![alt text](../img/model-endpoint.png)
+
+![alt text](../img/registered-model.png)
 
 #### 2. Clone the Git Repository as a CAI Project
 
