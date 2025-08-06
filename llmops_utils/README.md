@@ -87,6 +87,178 @@ pip3 install -r requirements.txt
 
 In the CAI Session, run the code. Enter your CDP User Management Access Keys when prompted. In the prompt, validate that model deployment has launched, and navigate to the Model Endpoints UI to check on progress.
 
+Here are some of the most useful utils explained:
+
+Use the ```configure_cdp``` method to set CDP Access Key ID and Private Key.
+
+```
+def configure_cdp(variable, value):
+    command = ["cdp", "configure", "set", variable, value]
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    if result.returncode != 0:
+        print("cdp command failed.")
+        print("Error:")
+        print(result.stderr)
+    return None
+print("CDP config function defined!")
+```
+
+Use ```get_ums_jwt_token``` to retrieve your CDP Token. CDP Access Keys are automatically read after using ```configure_cdp```.
+
+```
+def get_ums_jwt_token():
+    command = ["cdp", "iam", "generate-workload-auth-token",
+               "--workload-name", "DE"]
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    if result.returncode != 0:
+        print("cdp command failed.")
+        print("Error:")
+        print(result.stderr)
+        return None
+
+    try:
+        return json.loads(result.stdout)['token']
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f"Error: {e}")
+        return None
+
+        print("Defined function to get CDP_TOKEN!")
+```
+
+Use ```get_registry_endpoint``` to retrieve the Domain URL for the AI Registry associated with your CDP Environment.
+
+```
+def get_registry_endpoint(environmentName):
+    command = ["cdp", "ml", "list-model-registries"]
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    if result.returncode != 0:
+        print("cdp command failed.")
+        print("Error:")
+        print(result.stderr)
+        return None
+    try:
+        registries = json.loads(result.stdout)['modelRegistries']
+        for registry in registries:
+            if registry['environmentName'] == environmentName:
+                return registry['domain']
+                #return json.loads(result.stdout)['modelRegistries'][0]['domain']
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f"Error: {e}")
+        return None
+```
+
+Use ```get_caii_domain``` to retrieve the Domain URL for the AI Inference Service associated with your CDP Environment.
+
+```
+def get_caii_domain(environmentName):
+    command = ["cdp", "ml", "list-ml-serving-apps"]
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    if result.returncode != 0:
+        print("cdp command failed.")
+        print("Error:")
+        print(result.stderr)
+        return None
+
+    try:
+        aiisApps = json.loads(result.stdout)['apps']
+        for app in aiisApps:
+            if app['environmentName'] == environmentName:
+                return app['cluster']['domainName']
+        #return json.loads(result.stdout)['apps'][1]['cluster']['domainName']
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f"Error: {e}")
+        return None
+```
+
+Use ```deploy_model_to_caii``` to deploy a Model Endpoint to AI Infernece Service from the AI Registry. Notice you can further customize this method by parameterizing fields such as ```instance_type``` and ```resources```.
+
+```
+def deploy_model_to_caii(caii_domain, cdp_token, model_id, model_version, endpoint_name):
+    # construct url
+    deploy_url = f"https://{caii_domain}/api/v1alpha1/deployEndpoint"
+
+    headers = {'Authorization': 'Bearer ' + cdp_token,
+           'Content-Type': 'application/json'}
+
+    client = httpx.Client(headers=headers)
+
+    deploy_payload = {
+        "namespace": "serving-default",
+        "name": f"{endpoint_name}",
+        "instance_type": "g5.12xlarge",
+        "task": "INFERENCE",
+        "source": {
+            "registry_source": {
+                "model_id": f"{model_id}",
+                "version": f"{model_version}"
+            }
+        },
+        "resources": {
+            "req_cpu": "4",
+            "req_memory": "16Gi",
+            "num_gpus": "4"
+        },
+        "autoscaling": {
+            "min_replicas": "1",
+            "max_replicas": "5"
+        }
+    }
+    try:
+        response = client.post(deploy_url, json=deploy_payload)
+        response.raise_for_status()
+        print(f"Deployed {endpoint_name} successfully!")
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP {e.response.status_code}: {e.response.text}")
+    except httpx.RequestError as e:
+        print(f"Error deploying {endpoint_name}: {e}")
+```
+
+Use ```endpoint_is_ready``` to validate that a model endpoint has deployed successfully.
+
+```
+def endpoint_is_ready(caii_domain, cdp_token, endpoint_name):
+    headers = {'Authorization': 'Bearer ' + cdp_token,
+           'Content-Type': 'application/json'}
+    url = f"https://{caii_domain}/api/v1alpha1/describeEndpoint"
+    payload = {"namespace": "serving-default", "name": f"{endpoint_name}"}
+
+    client = httpx.Client(headers=headers)
+
+    try:
+        response = client.post(url, json=payload)
+        response.raise_for_status()
+        return response.json()['status']['active_model_state'] == 'Loaded'
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP {e.response.status_code}: {e.response.text}")
+    except httpx.RequestError as e:
+        print(f"Error describing {endpoint_name}: {e}")
+```
+
+Use ```get_endpoint_base_url``` to retrieve an endpoint URL once deployment has completed.
+
+```
+def get_endpoint_base_url(caii_domain, cdp_token, endpoint_name):
+    headers = {'Authorization': 'Bearer ' + cdp_token,
+           'Content-Type': 'application/json'}
+    url = f"https://{caii_domain}/api/v1alpha1/describeEndpoint"
+    payload = {"namespace": "serving-default", "name": f"{endpoint_name}"}
+
+    client = httpx.Client(headers=headers)
+
+    try:
+        response = client.post(url, json=payload)
+        response.raise_for_status()
+        return base_url(response.json()['url'], endpoint_name)
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP {e.response.status_code}: {e.response.text}")
+    except httpx.RequestError as e:
+        print(f"Error describing {endpoint_name}: {e}")
+```
+
 ## Summary & Next Steps
 
 In this tutorial, we demonstrated how to programmatically download the LLaMA 3B–Instruct model from the Hugging Face Model Catalog and deploy it within the Cloudera AI ecosystem.
