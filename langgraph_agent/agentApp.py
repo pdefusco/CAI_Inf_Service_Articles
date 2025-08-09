@@ -42,12 +42,12 @@ from langchain_core.messages import HumanMessage
 from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, START, END
 from dotenv import load_dotenv # used to store secret stuff like API keys or configuration values
-from openai import OpenAI
+#from openai import OpenAI
 import json
 
-MODEL_ID = "deepseek-ai/deepseek-r1-distill-llama-8b" # This is the Model ID from the AIIS Endpoint UI
-ENDPOINT_BASE_URL = "https://ml-684f8ec6-5d9.pdf-jul.a465-9q4k.cloudera.site/namespaces/serving-default/endpoints/deepseek-endpoint/v1"  # This is the Endpoint Base URL from the AIIS Endpoint UI
-CDP_TOKEN = ""  # Replace with your authentication token
+MODEL_ID = os.environ["MODEL_ID"] # This is the Model ID from the AIIS Endpoint UI
+ENDPOINT_BASE_URL = os.environ["ENDPOINT_BASE_URL"]  # This is the Endpoint Base URL from the AIIS Endpoint UI
+CDP_TOKEN = os.environ["CDP_TOKEN"]  # Replace with your authentication token
 
 class AgentState(TypedDict):
     messages: List[HumanMessage]
