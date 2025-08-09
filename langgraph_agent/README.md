@@ -1,4 +1,4 @@
-# How to Implement an Agent Application in CAI with AIIS and LangGraph
+# How to Implement an Agentic AI Application in CAI with AI Inference Service and LangGraph
 
 ## Objective
 
