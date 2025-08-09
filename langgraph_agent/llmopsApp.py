@@ -46,13 +46,15 @@ import subprocess
 from urllib.parse import urlparse, urlunparse
 from typing import Optional, Dict, Any, List
 import getpass
-from llmops_utils.llmopsUtils import *
+from llmopsUtils import ModelRegistryClient, Llmops
+
+llmopsClient = Llmops()
 
 # Configure CDP control plane credentials
 access_key_id = getpass.getpass("Enter your CDP access key ID: ")
 private_key = getpass.getpass("Enter your CDP private key: ")
-configure_cdp("cdp_access_key_id", access_key_id)
-configure_cdp("cdp_private_key", private_key)
+llmopsClient.configure_cdp("cdp_access_key_id", access_key_id)
+llmopsClient.configure_cdp("cdp_private_key", private_key)
 
 ENVIRONMENT_NAME = "pdf-jul-25-cdp-env" # Enter CDP env name here
 REGISTERED_MODEL_NAME = "mixtral-8x7b-instruct" # Enter model name as you'd like it to appear in AI Registry
@@ -60,15 +62,15 @@ HF_REPO_ID = "mistralai/Mixtral-8x7B-Instruct-v0.1" # Enter Repo ID for model as
 ENDPOINT_NAME = "mixtral-endpoint" # Enter endpoint name as you'd like it to appear in AIIS
 HF_TOKEN = os.environ["HF_TOKEN"] # Create Project Env Var with your HF Catalog Token, or set it directly here
 
-CAII_DOMAIN = get_caii_domain(ENVIRONMENT_NAME)
-CDP_TOKEN = get_ums_jwt_token()
+CAII_DOMAIN = llmopsClient.get_caii_domain(ENVIRONMENT_NAME)
+CDP_TOKEN = llmopsClient.get_ums_jwt_token()
 print("CAI DOMAIN: ", CAII_DOMAIN)
 print("CDP TOKEN: ", CDP_TOKEN)
 
-REGISTRY_ENDPOINT = get_registry_endpoint(ENVIRONMENT_NAME)
-print("REGISTRY ENDPOINT: ", REGISTRY_ENDPOINT)
-
 registryClient = ModelRegistryClient(base_url=REGISTRY_ENDPOINT, bearer_token=TOKEN)
+
+REGISTRY_ENDPOINT = registryClient.get_registry_endpoint(ENVIRONMENT_NAME)
+print("REGISTRY ENDPOINT: ", REGISTRY_ENDPOINT)
 
 new_model = registryClient.create_model(
     name=REGISTERED_MODEL_NAME,
@@ -76,20 +78,20 @@ new_model = registryClient.create_model(
     hf_token=HF_TOKEN
 )
 
-model_details = get_model_details(REGISTRY_ENDPOINT, REGISTERED_MODEL_NAME, CDP_TOKEN)
+model_details = llmopsClient.get_model_details(REGISTRY_ENDPOINT, REGISTERED_MODEL_NAME, CDP_TOKEN)
 print(model_details)
 
-MODEL_VERSION = get_most_recent_model_version(REGISTRY_ENDPOINT, model_details['id'], CDP_TOKEN)
+MODEL_VERSION = llmopsClient.get_most_recent_model_version(REGISTRY_ENDPOINT, model_details['id'], CDP_TOKEN)
 
 MODEL_ID = model_details['id']
 print(MODEL_ID)
 print(MODEL_VERSION)
 
-deploy_model_to_caii(CAII_DOMAIN, CDP_TOKEN, MODEL_ID, MODEL_VERSION, ENDPOINT_NAME)
+llmopsClient.deploy_model_to_caii(CAII_DOMAIN, CDP_TOKEN, MODEL_ID, MODEL_VERSION, ENDPOINT_NAME)
 
 # Must return True before we go on to the next step
-ready = endpoint_is_ready(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
+ready = llmopsClient.endpoint_is_ready(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
 print(ready)
 
-BASE_URL = get_endpoint_base_url(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
+BASE_URL = llmopsClient.get_endpoint_base_url(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
 print(BASE_URL)
