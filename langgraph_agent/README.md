@@ -69,7 +69,6 @@ Runtimes:
 
 ![alt text](../img/project-wizard-2.png)
 
-
 #### 2. Create the Project Environment Variables with Secrets
 
 Nearly all environment variables except the HuggingFace token will be set via the Navigate to User Settings -> Environment Variables and then save the following Environment Variables:
