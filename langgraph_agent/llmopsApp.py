@@ -51,7 +51,8 @@ from typing import Optional, Dict, Any, List
 import getpass
 from llmopsUtils import ModelRegistryClient, Llmops
 
-llmopsClient = Llmops()
+client = cmlapi.default_client()
+llmopsClient = Llmops(client)
 
 # Configure CDP control plane credentials
 access_key_id = getpass.getpass("Enter your CDP access key ID: ")
@@ -64,6 +65,8 @@ REGISTERED_MODEL_NAME = os.environ["REGISTERED_MODEL_NAME"] # Enter model name a
 HF_REPO_ID = os.environ["HF_REPO_ID"] # Enter Repo ID for model as it appears in HF Catalog e.g. "mistralai/Mixtral-8x7B-Instruct-v0.1"
 ENDPOINT_NAME = os.environ["ENDPOINT_NAME"] # Enter endpoint name as you'd like it to appear in AIIS e.g. "mixtral-endpoint"
 HF_TOKEN = os.environ["HF_TOKEN"] # Create Project Env Var with your HF Catalog Token, or set it directly here
+RUNTIME_ID = os.environ["RUNTIME_IDENTIFIER"] # The CAI RUntime ID for the Agent App
+
 
 CAII_DOMAIN = llmopsClient.get_caii_domain(ENVIRONMENT_NAME)
 CDP_TOKEN = llmopsClient.get_ums_jwt_token()
@@ -100,29 +103,7 @@ BASE_URL = llmopsClient.get_endpoint_base_url(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_N
 print(BASE_URL)
 
 # Use CML API v2 to launch the Gradio App
-client = cmlapi.default_client()
-
-# create an instance of the API class
-api_instance = cmlapi.CMLServiceApi()
-body = cmlapi.CreateApplicationRequest() # CreateApplicationRequest |
-projectId = os.environ['CDSW_PROJECT_ID']
-
-CreateModelDeploymentRequest = {
-  "name":,
-  "description":,
-  "runtime_identifier":,
-  "cpu" : "2",
-  "memory" : "4",
-  "environment": {
-      "MODEL_ID": MODEL_ID,
-      "ENDPOINT_BASE_URL": BASE_URL,
-      "CDP_TOKEN": CDP_TOKEN
-  }
-}
-
-try:
-    # Create an application and implicitly start it immediately.
-    api_response = api_instance.create_application(body, project_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CMLServiceApi->create_application: %s\n" % e)
+NAME = "AgentApp"
+DESCRIPTION = "A simple Agentic AI App using AI Inference Service and LangGraph"
+createAppdResponse = llmopsClient.createApp(self, NAME, DESCRIPTION, RUNTIME_ID, MODEL_ID, BASE_URL, CDP_TOKEN)
+print(createAppdResponse)

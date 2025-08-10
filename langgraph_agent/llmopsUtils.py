@@ -37,6 +37,7 @@
 # #  Author(s): Paul de Fusco
 #***************************************************************************/
 
+# Import general Python libraries
 import json
 import httpx
 import sys
@@ -52,6 +53,11 @@ import time
 from urllib.parse import urlparse, urlunparse
 from typing import Optional, Dict, Any, List
 import getpass
+
+# Import APIv2 libraries
+from __future__ import print_function
+import cmlapi
+from cmlapi.rest import ApiException
 
 # Use this if /tmp/jwt is supported by the registry and there's no
 # misconfiguration of the DL Knox gateway
@@ -109,7 +115,8 @@ class ModelRegistryClient:
 
 
 class Llmops:
-    def __init__(self):
+    def __init__(self, client):
+        self.client = client
         print("Llmops class!")
 
     # Used while configuring CDP credentials config
@@ -325,3 +332,29 @@ class Llmops:
             print(f"HTTP {e.response.status_code}: {e.response.text}")
         except httpx.RequestError as e:
             print(f"Error describing {endpoint_name}: {e}")
+
+    def createApp(self, name, description, runtimeId, modelId, endpointBaseUrl, cdpToken):
+        # create an instance of the API class
+        api_instance = cmlapi.CMLServiceApi()
+        body = cmlapi.CreateApplicationRequest() # CreateApplicationRequest |
+        projectId = os.environ['CDSW_PROJECT_ID']
+
+        CreateModelDeploymentRequest = {
+          "name": name,
+          "description": description,
+          "runtime_identifier": runtimeId,
+          "cpu" : "2",
+          "memory" : "4",
+          "environment": {
+              "MODEL_ID": modelId,
+              "ENDPOINT_BASE_URL": endpointBaseUrl,
+              "CDP_TOKEN": cdpToken
+          }
+        }
+
+        try:
+            # Create an application and implicitly start it immediately.
+            api_response = api_instance.create_application(body, project_id)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling CMLServiceApi->create_application: %s\n" % e)
