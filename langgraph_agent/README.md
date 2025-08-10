@@ -79,6 +79,7 @@ ENVIRONMENT_NAME: Enter CDP env name here e.g. pdf-jul-25-cdp-env
 REGISTERED_MODEL_NAME: Enter model name as you'd like it to appear in AI Registry e.g. mixtral-8x7b-instruct
 HF_REPO_ID: Enter Repo ID for model as it appears in HF Catalog e.g. mistralai/Mixtral-8x7B-Instruct-v0.1
 ENDPOINT_NAME: Enter endpoint name as you'd like it to appear in AIIS e.g. mixtral-endpoint
+RUNTIME_ID: Enter the CAI RUntime ID for the Agent App e.g. docker.repository.cloudera.com/cloudera/cdsw/ml-runtime-pbj-workbench-python3.10-standard:2025.06.1-b5
 ```
 
 ![alt text](../img/launch-pbj-session.png)
