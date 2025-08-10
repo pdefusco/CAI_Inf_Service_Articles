@@ -6,3 +6,12 @@ setuptools>=75.8.1
 xgboost>=2.1.4
 onnxmltools>=1.13.0
 onnxruntime==1.21.0
+langgraph
+langchain
+ipython
+langchain_openai
+langchain_community
+dotenv
+typing
+chromadb
+langchain_chroma
