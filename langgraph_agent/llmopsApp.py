@@ -56,10 +56,10 @@ private_key = getpass.getpass("Enter your CDP private key: ")
 llmopsClient.configure_cdp("cdp_access_key_id", access_key_id)
 llmopsClient.configure_cdp("cdp_private_key", private_key)
 
-ENVIRONMENT_NAME = "pdf-jul-25-cdp-env" # Enter CDP env name here
-REGISTERED_MODEL_NAME = "mixtral-8x7b-instruct" # Enter model name as you'd like it to appear in AI Registry
-HF_REPO_ID = "mistralai/Mixtral-8x7B-Instruct-v0.1" # Enter Repo ID for model as it appears in HF Catalog
-ENDPOINT_NAME = "mixtral-endpoint" # Enter endpoint name as you'd like it to appear in AIIS
+ENVIRONMENT_NAME = os.environ["ENVIRONMENT_NAME"] # Enter CDP env name here e.g. "pdf-jul-25-cdp-env"
+REGISTERED_MODEL_NAME = os.environ["ENVIRONMENT_NAME"] # Enter model name as you'd like it to appear in AI Registry e.g. "mixtral-8x7b-instruct"
+HF_REPO_ID = os.environ["ENVIRONMENT_NAME"] # Enter Repo ID for model as it appears in HF Catalog e.g. "mistralai/Mixtral-8x7B-Instruct-v0.1"
+ENDPOINT_NAME = os.environ["ENVIRONMENT_NAME"] # Enter endpoint name as you'd like it to appear in AIIS e.g. "mixtral-endpoint"
 HF_TOKEN = os.environ["HF_TOKEN"] # Create Project Env Var with your HF Catalog Token, or set it directly here
 
 CAII_DOMAIN = llmopsClient.get_caii_domain(ENVIRONMENT_NAME)

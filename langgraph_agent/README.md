@@ -51,3 +51,56 @@ If you have an airgapped environment with Cloudera On Prem, you can still follow
 ### Tutorial
 
 All artifacts are included in this Git repository. You can clone or fork it as needed. https://github.com/pdefusco/CAI_Inf_Service_Articles.git
+
+#### 1. Clone the Git Repository as a CAI Project
+
+Create a project with the following entries:
+
+```
+Project Name: simple agent with AIIS and LangGraph
+Project Description: Project to programmatically build AI Agent with AIIS, LangGraph and Mixtral from HF Catalog.
+Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
+Runtimes:
+  JupyterLab	Python 3.11	Standard	2025.06
+  PBJ Workbench	Python 3.11	Standard	2025.06
+```
+
+![alt text](../img/project-wizard-1.png)
+
+![alt text](../img/project-wizard-2.png)
+
+
+#### 2. Create the Project Environment Variables with Secrets
+
+Nearly all environment variables except the HuggingFace token will be set via the Navigate to User Settings -> Environment Variables and then save the following Environment Variables:
+
+```
+HF_TOKEN: Enter your HuggingFace token here
+ENVIRONMENT_NAME: Enter CDP env name here e.g. pdf-jul-25-cdp-env
+REGISTERED_MODEL_NAME: Enter model name as you'd like it to appear in AI Registry e.g. mixtral-8x7b-instruct
+HF_REPO_ID: Enter Repo ID for model as it appears in HF Catalog e.g. mistralai/Mixtral-8x7B-Instruct-v0.1
+ENDPOINT_NAME: Enter endpoint name as you'd like it to appear in AIIS e.g. mixtral-endpoint
+```
+
+![alt text](../img/launch-pbj-session.png)
+
+#### 3. Launch a CAI Session and Run the Script to Download the Model Programmatically
+
+Launch your first CAI Session with PBJ Runtime. You won't need a lot of resources:
+
+```
+Kernel: Community Python 3.10 VSCode 2023.11 pauldefusco/vscode4_cuda11_cml_runtime
+Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
+```
+
+![alt text](../img/launch-pbj-session.png)
+
+First, install the requirements by opening the Terminal and running this command:
+
+```
+pip3 install -r requirements.txt
+```
+
+![alt text](../img/install-requirements.png)
+
+Run ```llmopsApp.py``` to download Mixtral from HuggingFace to AI Registry and then deploy to an AI Inference Service endpoint. The script will automatically inherit the project environment variables you configured in step 2.
