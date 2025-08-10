@@ -111,7 +111,7 @@ The llmops script will download the large language model from HuggingFace to the
 
 #### 5. Interact with the Agent App
 
-Open the Application and ask input basic questions such as ```What is 5+2?``` and validate the output.
+Open the Application and ask input basic questions such as ```What is 4+4?``` and validate the output.
 
 ![alt text](../img/app_response.png)
 
