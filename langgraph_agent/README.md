@@ -61,7 +61,7 @@ Project Name: simple agent with AIIS and LangGraph
 Project Description: Project to programmatically build AI Agent with AIIS, LangGraph and Mixtral from HF Catalog.
 Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 Runtimes:
-  JupyterLab	Python 3.11	Standard	2025.06
+  Community Python 3.10 VSCode 2023.11 (add to runtime catalog from 'pauldefusco/vscode4_cuda11_cml_runtime')
   PBJ Workbench	Python 3.11	Standard	2025.06
 ```
 
