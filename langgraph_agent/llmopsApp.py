@@ -43,6 +43,9 @@ import json
 import time
 import os
 import subprocess
+from __future__ import print_function
+import cmlapi
+from cmlapi.rest import ApiException
 from urllib.parse import urlparse, urlunparse
 from typing import Optional, Dict, Any, List
 import getpass
@@ -57,9 +60,9 @@ llmopsClient.configure_cdp("cdp_access_key_id", access_key_id)
 llmopsClient.configure_cdp("cdp_private_key", private_key)
 
 ENVIRONMENT_NAME = os.environ["ENVIRONMENT_NAME"] # Enter CDP env name here e.g. "pdf-jul-25-cdp-env"
-REGISTERED_MODEL_NAME = os.environ["ENVIRONMENT_NAME"] # Enter model name as you'd like it to appear in AI Registry e.g. "mixtral-8x7b-instruct"
-HF_REPO_ID = os.environ["ENVIRONMENT_NAME"] # Enter Repo ID for model as it appears in HF Catalog e.g. "mistralai/Mixtral-8x7B-Instruct-v0.1"
-ENDPOINT_NAME = os.environ["ENVIRONMENT_NAME"] # Enter endpoint name as you'd like it to appear in AIIS e.g. "mixtral-endpoint"
+REGISTERED_MODEL_NAME = os.environ["REGISTERED_MODEL_NAME"] # Enter model name as you'd like it to appear in AI Registry e.g. "mixtral-8x7b-instruct"
+HF_REPO_ID = os.environ["HF_REPO_ID"] # Enter Repo ID for model as it appears in HF Catalog e.g. "mistralai/Mixtral-8x7B-Instruct-v0.1"
+ENDPOINT_NAME = os.environ["ENDPOINT_NAME"] # Enter endpoint name as you'd like it to appear in AIIS e.g. "mixtral-endpoint"
 HF_TOKEN = os.environ["HF_TOKEN"] # Create Project Env Var with your HF Catalog Token, or set it directly here
 
 CAII_DOMAIN = llmopsClient.get_caii_domain(ENVIRONMENT_NAME)
@@ -95,3 +98,31 @@ print(ready)
 
 BASE_URL = llmopsClient.get_endpoint_base_url(CAII_DOMAIN, CDP_TOKEN, ENDPOINT_NAME)
 print(BASE_URL)
+
+# Use CML API v2 to launch the Gradio App
+client = cmlapi.default_client()
+
+# create an instance of the API class
+api_instance = cmlapi.CMLServiceApi()
+body = cmlapi.CreateApplicationRequest() # CreateApplicationRequest |
+projectId = os.environ['CDSW_PROJECT_ID']
+
+CreateModelDeploymentRequest = {
+  "name":,
+  "description":,
+  "runtime_identifier":,
+  "cpu" : "2",
+  "memory" : "4",
+  "environment": {
+      "MODEL_ID": MODEL_ID,
+      "ENDPOINT_BASE_URL": BASE_URL,
+      "CDP_TOKEN": CDP_TOKEN
+  }
+}
+
+try:
+    # Create an application and implicitly start it immediately.
+    api_response = api_instance.create_application(body, project_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CMLServiceApi->create_application: %s\n" % e)
