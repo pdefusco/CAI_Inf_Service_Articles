@@ -157,7 +157,7 @@ def main():
 
     USERNAME = os.environ["PROJECT_OWNER"]
     DBNAME = "BNK_MLOPS_HOL_"+USERNAME
-    CONNECTION_NAME = "go01-aw-dl"
+    CONNECTION_NAME = "pdf-oct-aw-dl"
 
     # Instantiate BankDataGen class
     dg = BankDataGen(USERNAME, DBNAME, CONNECTION_NAME)
