@@ -1,6 +1,6 @@
 # Deploy Llama 3.1 8B Instruct to AI Inference Service from HF Catalog Programmatically
 
-![alt text](/llama-hf/img/llama-hf-workflow.png)
+![alt text](/llama-hf/img/llama-hf-deployment-workflow.png)
 
 ## Objective
 
