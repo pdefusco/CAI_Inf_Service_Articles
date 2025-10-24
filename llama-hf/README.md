@@ -1,5 +1,7 @@
 # Deploy Llama 3.1 8B Instruct to AI Inference Service from HF Catalog Programmatically
 
+![alt text](/img/llama-hf-workflow.png)
+
 ## Objective
 
 In this tutorial you will learn how to programmatically deploy Meta's Llama-3.1-8B-Instruct LLM to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Data Center.
