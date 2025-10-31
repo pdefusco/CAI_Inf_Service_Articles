@@ -1,5 +1,7 @@
 # Train, Register, Deploy and Serve XGBoost Classifier to AI Inference Service Programmatically
 
+![alt text](../img/xgboost-deployment.png)
+
 ## Objective
 
 In this tutorial you will learn how to build an XGBoost classifier and deploy it to the Cloudera AI Inference Service. First, you will train and register the model with the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from your secure endpoint.
