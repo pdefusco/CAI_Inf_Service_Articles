@@ -1,0 +1,5 @@
+httpx
+black>=25.1.0
+setuptools>=75.8.1
+dotenv
+typing
