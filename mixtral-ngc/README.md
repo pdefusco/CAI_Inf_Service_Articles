@@ -1,6 +1,6 @@
 # Deploy Mixtral to AI Inference Service from NGC Catalog
 
-![alt text](/img/step_1_model_download.png)
+![alt text](../img/step_1_model_download.png)
 
 ## Objective
 
@@ -49,9 +49,9 @@ All artifacts are included in this Git repository. You can clone or fork it as n
 
 #### 1. Download the Model from NGC to AI Registry via the Cloudera Model Hub
 
-![alt text](/img/step_1_model_download.png)
+![alt text](../img/step_1_model_download.png)
 
-![alt text](/img/step_2_model_download.png)
+![alt text](../img/step_2_model_download.png)
 
 #### 2. Deploy the Model to AI Inference Service
 
