@@ -1,6 +1,6 @@
 # Deploy Mixtral to AI Inference Service from NGC Catalog
 
-![alt text](../img/step_1_model_download.png)
+![alt text](mixtral-ngc/img/step_1_model_download.png)
 
 ## Objective
 
