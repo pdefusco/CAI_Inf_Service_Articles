@@ -77,6 +77,8 @@ Launch a CAI Session and install the requirements with ```pip install mixtral-ng
 
 Run through the notebook and execute each cell. You will need to enter your CDP User credentials - Access Key ID and Private Key - which you can obtain from the User Management page in the Management Console.
 
+Finally, navigate to the Inference Service Model Deployments tab and validate that the endpoint has deployed. 
+
 ![alt text](../mixtral-ngc/img/step_7_model_deployment.png)
 
 ![alt text](../mixtral-ngc/img/step_8_model_deployment.png)
