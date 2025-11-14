@@ -12,7 +12,7 @@ If you'd like to use a different model you can apply the same steps for other la
 
 Mixtral is a family of large‐language models built on a sparse mixture-of-experts (MoE) architecture developed by Mistral AI. It’s based on the same basic architecture as Mistral 7B, but each layer has multiple “expert” feed-forward sub-blocks (for example 8 experts) and a router that selects which expert(s) to use for each token.
 
-“Mixtral Instruct” is a fine-tuned variant of the base Mixtral model that has been adapted to follow instructions, prompts, then respond in a more controlled interactive manner e.g. chatbots, Q&A, summarization, etc. It has gained a lot of popularity because it delivers performance while remaining lightweight enough to run on generally more limited hardware resources than other large language models.
+“Mixtral Instruct” is a fine-tuned variant of the base Mixtral model that has been adapted to follow instructions, prompts, then respond in a more controlled interactive manner, a great fit for chatbot, Q&A, and summarization use cases. It has gained a lot of popularity because it delivers performance while remaining lightweight enough to run on generally more limited hardware resources than other large language models.
 
 With Cloudera AI, enterprises can download open source GenAI models such as Mixtral 8×7B Instruct (or others) and securely host them in their Public or Private Cloud, thus implementing their own LLM-powered applications while preventing proprietary information from being shared with closed-source model services such as OpenAI.
 
