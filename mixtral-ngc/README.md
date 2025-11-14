@@ -4,13 +4,13 @@
 
 ## Objective
 
-In this tutorial you will learn how to programmatically deploy Mixtral to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Public Cloud of choice.
+In this tutorial you will learn how to programmatically deploy Mixtral 8x7B Instruct to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Public Cloud of choice.
 
 If you'd like to use a different model you can apply the same steps for other language models available in the NGC Catalog.  
 
 ### Motivation
 
-Mixtral is a large‐language model built on a sparse mixture-of-experts (MoE) architecture. It’s based on the same basic architecture as Mistral 7B, but each layer has multiple “expert” feed-forward sub-blocks (for example 8 experts) and a router that selects which expert(s) to use for each token.
+Mixtral is a family of large‐language models built on a sparse mixture-of-experts (MoE) architecture developed by Mistral AI. It’s based on the same basic architecture as Mistral 7B, but each layer has multiple “expert” feed-forward sub-blocks (for example 8 experts) and a router that selects which expert(s) to use for each token.
 
 “Mixtral Instruct” is a fine-tuned variant of the base Mixtral model that has been adapted to follow instructions, prompts, then respond in a more controlled interactive manner e.g. chatbots, Q&A, summarization, etc. It has gained a lot of popularity because it delivers performance while remaining lightweight enough to run on generally more limited hardware resources than other large language models.
 
@@ -29,6 +29,8 @@ Cloudera AI (CAI) is a core component of Cloudera’s hybrid cloud data platform
 NVIDIA NGC is a curated catalog and registry of GPU-optimized containers, pretrained models, SDKs, and full AI/HPC workflows from NVIDIA, designed to help users quickly build, train, and deploy AI workloads across cloud, on-premises, and edge environments.
 
 Cloudera AI Registry (part of Cloudera’s model management offering) integrates with NGC so that models from the NGC catalog can be imported directly into the Registry—enabling enterprises to govern, deploy, and monitor NVIDIA-optimized models within their existing Cloudera AI workflows.
+
+Cloudera AI features a Model Hub which provides a UI driven mechanism for downloading models from NGC to the Cloudera AI Registry, as well as additional information and links to model cards in NGC. For example, more information on the model used in this example - Mixtral 8x7B - can be found at this link: https://catalog.ngc.nvidia.com/orgs/nim/teams/mistralai/containers/mixtral-8x7b-instruct-v01?version=1.8.4
 
 ## Requirements
 
