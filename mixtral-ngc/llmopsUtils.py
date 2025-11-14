@@ -37,9 +37,6 @@
 # #  Author(s): Paul de Fusco
 #***************************************************************************/
 
-import os
-import subprocess
-
 # Import inference-related libraries
 from open_inference.openapi.client import OpenInferenceClient, InferenceRequest
 import httpx
@@ -50,6 +47,8 @@ from typing import Optional, Dict, Any, List
 
 # Used while configuring CDP credentials config
 import getpass
+import os
+import subprocess
 
 # Create CDP configuration
 def configure_cdp(variable, value):

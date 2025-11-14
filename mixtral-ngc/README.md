@@ -1,4 +1,4 @@
-# Deploy Mixtral to AI Inference Service from NGC Catalog
+# Deploy Mixtral 8x7B Instruct from NGC Catalog to AI Inference Service
 
 ![alt text](../mixtral-ngc/img/step_1_model_download.png)
 
@@ -10,7 +10,11 @@ If you'd like to use a different model you can apply the same steps for other la
 
 ### Motivation
 
-With Cloudera AI, enterprises can download open source GenAI models and securely host them in their Public or Private Cloud, thus implementing their own LLM-powered applications while preventing proprietary information from being shared with closed-source model companies such as OpenAI.
+Mixtral is a large‐language model built on a sparse mixture-of-experts (MoE) architecture. It’s based on the same basic architecture as Mistral 7B, but each layer has multiple “expert” feed-forward sub-blocks (for example 8 experts) and a router that selects which expert(s) to use for each token.
+
+“Mixtral Instruct” is a fine-tuned variant of the base Mixtral model that has been adapted to follow instructions, prompts, then respond in a more controlled interactive manner e.g. chatbots, Q&A, summarization, etc. It has gained a lot of popularity because it delivers performance while remaining lightweight enough to run on generally more limited hardware resources than other large language models.
+
+With Cloudera AI, enterprises can download open source GenAI models such as Mixtral 8×7B Instruct (or others) and securely host them in their Public or Private Cloud, thus implementing their own LLM-powered applications while preventing proprietary information from being shared with closed-source model services such as OpenAI.
 
 ### Cloudera AI & LLM's
 
@@ -33,7 +37,7 @@ This example was built with Cloudera On Cloud Public Cloud 3.7.1, CAI Workbench 
 * A CAI Environment in Private or Public Cloud.
 * An AI Registry deployment.
 * An AI Inference Service deployment with g6e.12xlarge GPU node group / Autoscale Range Min Max 1-4 / Root Volume Size 512.
-* A Python 3.11 Cloudera AI Runtime with PBJ Workbench IDE.
+* A Python 3.11 Cloudera AI Runtime with JupyterLab Workbench IDE.
 
 If you are operating in a Cloudera On Prem environment that is airgapped you have to follow a few extra steps to download the model with a python script shown as documented here: https://docs.cloudera.com/machine-learning/1.5.5/importing-model-airgapped/topics/ml-models-in-air-gapped-environment.html
 
@@ -53,6 +57,61 @@ All artifacts are included in this Git repository. You can clone or fork it as n
 
 ![alt text](../mixtral-ngc/img/step_2_model_download.png)
 
+![alt text](../mixtral-ngc/img/step_0_model_download_success.png)
+
 #### 2. Deploy the Model to AI Inference Service
 
-Create a CAI Project and ensure to add the Python 3.11 Cloudera AI Runtime with PBJ Workbench IDE.
+Create a CAI Project and ensure to add the Python 3.11 Cloudera AI Runtime with JupyterLab IDE.
+
+![alt text](../mixtral-ngc/img/step_3_project_create.png)
+
+![alt text](../mixtral-ngc/img/step_4_project_create.png)
+
+Launch a CAI Session and install the requirements with ```pip install mixtral-ngc/requirements.txt```.
+
+![alt text](../mixtral-ngc/img/step_5_launch_session.png)
+
+![alt text](../mixtral-ngc/img/step_6_install_requirements.png)
+
+Run through the notebook and execute each cell. You will need to enter your CDP User credentials - Access Key ID and Private Key - which you can obtain from the User Management page in the Management Console.
+
+![alt text](../mixtral-ngc/img/step_7_model_deployment.png)
+
+![alt text](../mixtral-ngc/img/step_8_model_deployment.png)
+
+## Summary & Next Steps
+
+In this tutorial, we demonstrated how to download Mixtral 8x7B Instruct from the Nvidia NGC Catalog and deploy it within the Cloudera AI ecosystem.
+
+This end-to-end workflow highlights how Cloudera AI simplifies the process of operationalizing large language models using modern tools and integrated APIs.
+
+You can replicate this pattern in your On Prem Data Center or Public Cloud VPC in order to privately host a Mixtral 8×7B Instruct model for llm-powered enterprise applications.  
+
+**Additional Resources & Tutorials**
+Explore these helpful tutorials and blogs to learn more about Cloudera AI, the AI Registry, and AI Inference Service:
+
+1. **Cloudera AI Inference Service – Easy Integration & Deployment**
+   A technical deep dive into how Cloudera’s inference service enables GenAI integration in production: ([Reddit][1], [Cloudera][2])
+
+2. **Deploy & Scale AI Applications with Cloudera AI Inference Service**
+   Official Cloudera blog covering general availability, hybrid support, and GPU acceleration: ([Cloudera][3])
+
+3. **Cloudera Introduces AI Inference Service With NVIDIA NIM**
+   Explains how NVIDIA NIM microservices are embedded, + details on AI Registry integration: ([Cloudera][4])
+
+4. **Scaling AI Solutions with Cloudera: Inference & Solution Patterns**
+   A deep technical walkthrough on deploying AI at scale, including RAG workflows with LLaMA models: ([Cloudera][5], [Reddit][6])
+
+5. **How to Use Model Registry on Cloudera Machine Learning**
+   Community guide focused specifically on registering, versioning, and managing models: ([community.cloudera.com][7])
+
+6. **Cloudera AI Inference Service Overview (docs)**
+   Official documentation outlining architecture, APIs (OpenAI & standard protocols), GPU support, and registry integration: ([Cloudera][2])
+
+[1]: https://www.reddit.com/r/LlamaIndex/comments/1f4nqvc?utm_source=chatgpt.com "[Tutorial] Building Multi AI Agent System Using LlamaIndex and Crew AI!"
+[2]: https://www.cloudera.com/blog/technical/cloudera-ai-inference-service-enables-easy-integration-and-deployment-of-genai.html?utm_source=chatgpt.com "Elevating Productivity: Cloudera Data Engineering Brings External IDE Connectivity to Apache Spark | Blog | Cloudera"
+[3]: https://www.cloudera.com/blog/business/deploy-and-scale-ai-applications-with-cloudera-ai-inference-service.html?utm_source=chatgpt.com "Deploy and Scale AI Applications With Cloudera AI Inference Service | Blog | Cloudera"
+[4]: https://cloudera.com/blog/business/cloudera-introduces-ai-inference-service-with-nvidia-nim.html?utm_source=chatgpt.com "Cloudera Introduces AI Inference Service With NVIDIA NIM | Blog | Cloudera"
+[5]: https://www.cloudera.com/blog/technical/scaling-ai-solutions-with-cloudera-a-deep-dive-into-ai-inference-and-solution-patterns.html?utm_source=chatgpt.com "Scaling AI Solutions with Cloudera: A Deep Dive into AI Inference and Solution Patterns | Blog | Cloudera"
+[6]: https://www.reddit.com/r/learnmachinelearning/comments/1cn1c3u?utm_source=chatgpt.com "Fine-tune your first large language model (LLM) with LoRA, llama.cpp, and KitOps in 5 easy steps"
+[7]: https://community.cloudera.com/t5/Community-Articles/How-to-use-Model-Registry-on-Cloudera-Machine-Learning/ta-p/379812?utm_source=chatgpt.com "How to use Model Registry on Cloudera Machine Lear... - Cloudera Community - 379812"
