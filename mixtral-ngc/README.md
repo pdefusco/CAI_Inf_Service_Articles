@@ -1,6 +1,6 @@
 # Deploy Mixtral 8x7B Instruct from NGC Catalog to AI Inference Service
 
-![alt text](../mixtral-ngc/img/step_1_model_download.png)
+![alt text](../mixtral-ngc/img/sol_arch.png)
 
 ## Objective
 
