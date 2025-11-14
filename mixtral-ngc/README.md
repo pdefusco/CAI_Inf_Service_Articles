@@ -32,7 +32,7 @@ Cloudera AI Registry (part of Cloudera’s model management offering) integrates
 
 ## Requirements
 
-This example was built with Cloudera On Cloud Public Cloud 3.7.1, CAI Workbench 2.0.53, Inference Service 1.7.0 and AI Registry 1.10.0. The same example will also work in Private Cloud without any changes. You can reproduce this tutorial in your CAI environment with the following:
+This example was built with Cloudera On Cloud Public Cloud 7.3.1, CAI Workbench 2.0.53, Inference Service 1.7.0 and AI Registry 1.11.0. The same example will also work in Private Cloud without any changes. You can reproduce this tutorial in your CAI environment with the following:
 
 * A CAI Environment in Private or Public Cloud.
 * An AI Registry deployment.
