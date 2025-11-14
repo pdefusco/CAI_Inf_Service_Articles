@@ -31,3 +31,13 @@ In this tutorial you will learn how to build an XGBoost classifier and deploy it
 This example was built with Cloudera On Cloud Public Cloud Runtime 7.3.1, CAI Workbench 2.0.50, Inference Service 1.4.0 and AI Registry 1.7.0. The same example will also work in Private Cloud without changes.
 
 Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/xgboost#train-register-deploy-and-serve-xgboost-classifier-to-ai-inference-service-programmatically
+
+### Deploy Mixtral 8x7B Instruct from NGC Catalog to AI Inference Service
+
+In this tutorial you will learn how to programmatically deploy Mixtral 8x7B Instruct to the Cloudera AI Inference Service. First, you will download the model to the Cloudera AI Registry; Then, you will create an AI Inference Service Endpoint to serve predictions in real time from within your Public Cloud of choice.
+
+If you'd like to use a different model you can apply the same steps for other language models available in the NGC Catalog.  
+
+This example was built with Cloudera On Cloud Public Cloud 7.3.1, CAI Workbench 2.0.53, Inference Service 1.7.0 and AI Registry 1.11.0. The same example will also work in Private Cloud without any changes.
+
+Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/mixtral-ngc
