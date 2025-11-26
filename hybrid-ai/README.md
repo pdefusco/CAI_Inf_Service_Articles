@@ -49,11 +49,12 @@ In order to reproduce the example you will need:
 
 * AWS Credentials: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_SESSION_TOKEN.
 * Ability to generate CDP Credentials for your user in each environment: CDP_ACCESS_KEY_ID and CDP_PRIVATE_KEY.
-* Ranger and IDBroker Mappings for User and AI Registries in each environment.
+* Ranger and IDBroker Mapping configurations for User and AI Registries in each environment.
 
 ### Step by Step Tutorial
 
 All artifacts are included in this Git repository under the ```hybrid-ai``` folder. You can clone or fork it as needed. https://github.com/pdefusco/CAI_Inf_Service_Articles.git
+
 
 ### Cloudera AI on AWS
 
@@ -63,22 +64,22 @@ In Cloudera AI on AWS, log into the Workbench and create a project with the foll
 
 ```
 Project Name: Model Training
-Project Description: Project to Train and Register the PyTorch model in Cloudera AI.
+Project Description: Project to Train the PyTorch model in Cloudera AI.
 Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 Runtimes:
-  PBJ Workbench	Python 3.10	Standard 2025.09
+  JupyterLab Python 3.10 Standard 2025.09
 ```
 
-![alt text](../img/project-wizard-1.png)
+![alt text](../img/hybrid-ai-step1.png)
 
-![alt text](../img/project-wizard-2.png)
+![alt text](../img/hybrid-ai-step2.png)
 
 ##### 2. Launch a CAI Session to Train and Register PyTorch Model
 
 Launch your first CAI Session with PBJ Runtime. You won't need a lot of resources:
 
 ```
-Kernel: Python 3.10 PBJ Workbench Standard
+Kernel: Python 3.10 JupyterLab Standard
 Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 ```
 
@@ -90,7 +91,7 @@ First, install the requirements by opening the Terminal and running this command
 pip3 install -r hybrid-ai/requirements.txt
 ```
 
-![alt text](../img/install-requirements.png)
+![alt text](../img/hybrid-ai-requirements.png)
 
 Open notebook ```01_train_pytorch_cloud.ipynb``` and run each cell. No code changes are required.
 
