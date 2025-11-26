@@ -70,9 +70,9 @@ Runtimes:
   JupyterLab Python 3.10 Standard 2025.09
 ```
 
-![alt text](../img/hybrid-ai-step1.png)
+![alt text](img/hybrid-ai-step1.png)
 
-![alt text](../img/hybrid-ai-step2.png)
+![alt text](img/hybrid-ai-step2.png)
 
 ##### 2. Launch a CAI Session to Train and Register PyTorch Model
 
@@ -83,7 +83,7 @@ Kernel: Python 3.10 JupyterLab Standard
 Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 ```
 
-![alt text](../img/launch-pbj-session.png)
+![alt text](img/launch-pbj-session.png)
 
 First, install the requirements by opening the Terminal and running this command:
 
@@ -91,15 +91,15 @@ First, install the requirements by opening the Terminal and running this command
 pip3 install -r hybrid-ai/requirements.txt
 ```
 
-![alt text](../img/hybrid-ai-requirements.png)
+![alt text](img/hybrid-ai-requirements.png)
 
 Open notebook ```01_train_pytorch_cloud.ipynb``` and run each cell. No code changes are required.
 
-![alt text](../img/token-generate.png)
+![alt text](img/notebook-code-1.png)
 
 Navigate to the ```Registered Models``` page and validate that your PyTorch model has now been logged in the AI Registry.
 
-![alt text](../img/token-generate.png)
+![alt text](img/registered-model.png)
 
 
 ### Cloudera AI on Prem
