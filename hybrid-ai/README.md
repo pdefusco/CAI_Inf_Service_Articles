@@ -141,15 +141,11 @@ Kernel: Python 3.11 PBJ Workbench Standard
 Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 ```
 
-![alt text](../img/launch-pbj-session.png)
-
-First, install the requirements by opening the Terminal and running this command:
+Install the requirements by opening the Terminal and running this command:
 
 ```
 pip3 install -r hybrid-ai/requirements.txt
 ```
-
-![alt text](../img/install-requirements.png)
 
 ##### 6. Run the Notebook
 
@@ -159,7 +155,7 @@ Run the cell titled ```Configure CDP control plane credentials``` and input your
 
 In the following cell, modify the ```ENVIRONMENT_NAME``` field reflecting the name of the ***CDP on AWS environment***. See the below screenshot as a reference for both edits.
 
-![alt text](../img/install-requirements.png)
+![alt text](img/notebook-code-2.png)
 
 Keep running all cells without any code changes, until you get to the ```DEPLOY MODEL IN LOCAL INFERENCE SERVICE``` section a couple of dozen cells below.
 
@@ -167,7 +163,7 @@ In the next cells, input your CDP_ACCESS_KEY_ID and CDP_PRIVATE_KEY for your ***
 
 Finally, run the next cells to deploy the model to the Cloudera AI Inference Service On Prem. Navigate to the ```Model Endpoints UI``` and validate your model is deploying.
 
-![alt text](../img/registry-download-1.png)
+![alt text](img/model-endpoints.png)
 
 
 ## Summary & Next Steps
