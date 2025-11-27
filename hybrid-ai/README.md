@@ -83,8 +83,6 @@ Kernel: Python 3.10 JupyterLab Standard
 Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 ```
 
-![alt text](img/launch-pbj-session.png)
-
 First, install the requirements by opening the Terminal and running this command:
 
 ```
