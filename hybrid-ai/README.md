@@ -171,6 +171,8 @@ Finally, run the remaining two cells to deploy the model to the Cloudera AI Infe
 
 ![alt text](img/hybrid-model-deployment-3.png)
 
+If you want to learn to perform these last steps programmatically without manually looking up variables in the UI, refer to this LLMOps project: [https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/llmops-utils](https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/llmops-utils)
+
 ## Summary & Next Steps
 
 In this tutorial, we demonstrated how to train a PyTorch model in the Public Cloud and deploy it in the Private Cloud with Cloudera AI Hybrid Cloud.  

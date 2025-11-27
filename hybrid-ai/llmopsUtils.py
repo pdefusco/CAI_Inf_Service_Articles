@@ -47,9 +47,46 @@ import json
 import time
 from urllib.parse import urlparse, urlunparse
 from typing import Optional, Dict, Any, List
+import boto3
+from botocore.exceptions import NoCredentialsError, ClientError
+from urllib.parse import urlparse
+import tarfile
 
 # Used while configuring CDP credentials config
 import getpass
+
+# Download and extract Model from AI Registry
+def download_model(s3_uri):
+    if not s3_uri.startswith("s3a://"):
+        raise ValueError(f"Invalid S3 URI: {s3_uri}")
+
+    parsed = urlparse(s3_uri)
+    bucket = parsed.netloc
+    key = parsed.path.lstrip("/")  # remove leading slash
+
+    print("Bucket:", bucket)
+    print("Key:", key)
+
+    #bucket_name = "nov-paul-buk-5d0c06df"
+    #key = "data/modelregistry/lbzj-8siy-gl2y-4b88/tmh8-upks-jqeg-e51j/model.tar.gz"
+    local_path = "model.tar.gz"
+    s3 = boto3.client("s3")
+    
+    try:
+        s3.download_file(bucket, key, local_path)
+        print("Download successful!")
+    except NoCredentialsError:
+        print("ERROR: No AWS credentials found.")
+    except ClientError as e:
+        print(f"ERROR downloading file: {e}")
+
+    tar_path = "model.tar.gz"         # path to your downloaded file
+    extract_dir = "/home/cdsw/onnx_model"  # where to extract
+    
+    with tarfile.open(tar_path, "r:gz") as tar:
+        tar.extractall(path=extract_dir)
+    
+    print("Extraction complete!")
 
 # Create CDP configuration
 def configure_cdp(variable, value):
