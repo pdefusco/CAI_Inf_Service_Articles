@@ -169,7 +169,7 @@ Finally, run the remaining two cells to deploy the model to the Cloudera AI Infe
 
 ![alt text](img/hybrid-model-endpoint-2.png)
 
-![alt text](img/hybrid-model-endpoint-1.png)
+![alt text](img/hybrid-model-deployment-3.png)
 
 ## Summary & Next Steps
 
