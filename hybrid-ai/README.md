@@ -1,6 +1,6 @@
 # Hybrid AI: Train a PyTorch Model in Cloudera AI on AWS and Deploy it in Cloudera AI Inference Service OnPrem
 
-![alt text](img/hybrid-ai-sol-arch.png)
+![alt text](img/hybrid-arch.png)
 
 ## Objective
 
