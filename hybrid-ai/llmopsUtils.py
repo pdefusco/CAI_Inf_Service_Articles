@@ -1,5 +1,5 @@
 #****************************************************************************
-# (C) Cloudera, Inc. 2020-2023
+# (C) Cloudera, Inc. 2020-2025
 #  All rights reserved.
 #
 #  Applicable Open Source License: GNU Affero General Public License v3.0
@@ -71,7 +71,7 @@ def download_model(s3_uri):
     #key = "data/modelregistry/lbzj-8siy-gl2y-4b88/tmh8-upks-jqeg-e51j/model.tar.gz"
     local_path = "model.tar.gz"
     s3 = boto3.client("s3")
-    
+
     try:
         s3.download_file(bucket, key, local_path)
         print("Download successful!")
@@ -82,10 +82,10 @@ def download_model(s3_uri):
 
     tar_path = "model.tar.gz"         # path to your downloaded file
     extract_dir = "/home/cdsw/onnx_model"  # where to extract
-    
+
     with tarfile.open(tar_path, "r:gz") as tar:
         tar.extractall(path=extract_dir)
-    
+
     print("Extraction complete!")
 
 # Create CDP configuration
@@ -165,7 +165,7 @@ def list_model_info(registry_endpoint, model_id, token):
         return result.json()
     except (json.JSONDecodeError) as e:
         print(f"Error: {e}")
-        return None 
+        return None
 
 def get_most_recent_model_version(registry_endpoint, model_id, token):
     headers = {'Authorization': 'Bearer ' + token,
