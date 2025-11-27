@@ -163,11 +163,9 @@ Here, using the CDP CLI, obtain your CDP Token for your ***CDP on Prem environme
 
 Finally, run the remaining two cells to deploy the model to the Cloudera AI Inference Service On Prem. Navigate to the Model Endpoints UI and validate your model is deploying.
 
-![alt text](img/hybrid-model-endpoint-1.png)
-
 ![alt text](img/hybrid-model-ui.png)
 
-Final
+![alt text](img/hybrid-model-endpoint-1.png)
 
 ## Summary & Next Steps
 
