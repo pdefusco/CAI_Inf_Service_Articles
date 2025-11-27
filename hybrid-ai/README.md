@@ -159,11 +159,13 @@ In the following cell, modify the ```ENVIRONMENT_NAME``` field reflecting the na
 
 Keep running all cells without any code changes, until you get to the ```DEPLOY MODEL IN LOCAL INFERENCE SERVICE``` section a couple of dozen cells below.
 
-In the next cells, input your CDP_ACCESS_KEY_ID and CDP_PRIVATE_KEY for your ***Cloudera on Prem environment user*** and ***CDP on Prem environment***.
+Here, obtain your CDP Token for your ***CDP on Prem environment*** using the CDP CLI and input it in the ```CDP_TOKEN``` variable. Then, look up the values for the ```CAII_DOMAIN``` and ```MODEL_ID``` variables in the Inference Service and AI Registry UI's respectively, and input them in the notebook. Feel free to update the ```ENDPOINT_NAME``` as you'd like. Leave the ```MODEL_ID``` to ```1``` unless you have registered the model multiple times.
 
-Finally, run the next cells to deploy the model to the Cloudera AI Inference Service On Prem. Navigate to the ```Model Endpoints UI``` and validate your model is deploying.
+Finally, run the remaining two cells to deploy the model to the Cloudera AI Inference Service On Prem. Navigate to the Model Endpoints UI and validate your model is deploying.
 
-![alt text](img/model-endpoints.png)
+![alt text](img/hybrid-model-endpoint-1.png)
+
+![alt text](img/hybrid-model-endpoint-2.png)
 
 
 ## Summary & Next Steps
