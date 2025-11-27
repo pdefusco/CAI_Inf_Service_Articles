@@ -41,3 +41,13 @@ If you'd like to use a different model you can apply the same steps for other la
 This example was built with Cloudera On Cloud Public Cloud 7.3.1, CAI Workbench 2.0.53, Inference Service 1.7.0 and AI Registry 1.11.0. The same example will also work in Private Cloud without any changes.
 
 Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/mixtral-ngc
+
+### Hybrid AI: Train a PyTorch Model in Cloudera AI on AWS and Deploy it in Cloudera AI Inference Service OnPrem
+
+In this tutorial you will learn how to programmatically train, register, and deploy a model with Cloudera AI Hybrid Cloud. First, you will train a PyTorch model in Cloudera AI on AWS. Then, you will register the model with Cloudera AI on premises. Finally, you will deploy the model to the Cloudera AI Inference Service, also running on premises.
+
+The general purpose of the demo is to show an end to end hybrid AI workflow between Cloudera AI on AWS and on Prem. The same worfklow steps can be applied to other use cases, frameworks, and Cloudera AI on Azure.
+
+This example was built with Cloudera on AWS and Cloudera OnPrem. At time of this writing, all latest component versions were used. In general, previus and/or future component versions will work as well.
+
+Instructions & Code: https://github.com/pdefusco/CAI_Inf_Service_Articles/blob/main/hybrid-ai/README.md
