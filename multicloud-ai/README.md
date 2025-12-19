@@ -75,15 +75,15 @@ First, install the requirements by opening the Terminal and running this command
 pip3 install -r multicloud-ai/requirements.txt
 ```
 
-![alt text](img/hybrid-ai-requirements.png)
+![alt text](img/multi-cloud-reqs.png)
 
-Open notebook ```01_train_sparkml_dev.ipynb``` and run each cell. No code changes are required.
+Open notebook ```01_train_sparkml_dev.py``` and run each cell. No code changes are required.
 
-![alt text](img/notebook-code-1.png)
+![alt text](img/session-run.png)
 
-Navigate to the ```Registered Models``` page and validate that your PyTorch model has now been logged in the AI Registry.
+Navigate to the ```Registered Models``` page and validate that your SparkML model has now been logged in the AI Registry.
 
-![alt text](img/registered-model.png)
+![alt text](img/registry-model.png)
 
 
 ### Cloudera AI on AWS PRD
@@ -116,7 +116,7 @@ AWS_SECRET_ACCESS_KEY: <obtain-in-aws>
 AWS_SESSION_TOKEN: <obtain-in-aws>
 ```
 
-##### 5. Launch a CAI Session to Download and Deploy the PyTorch Model to Clouera AI Inference Service
+##### 5. Launch a CAI Session to Download and Deploy the SparkML Model to Clouera AI Inference Service
 
 Launch your first CAI Session with JupyterLab Runtime. You won't need a lot of resources:
 
