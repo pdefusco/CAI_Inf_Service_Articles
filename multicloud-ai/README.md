@@ -4,44 +4,30 @@
 
 ## Objective
 
-In this tutorial you will learn how to programmatically train, register, and deploy a model with Cloudera AI multi-cloud. First, you will train a PyTorch GNN model in Cloudera AI on Azure. Then, you will register the model with Cloudera AI on AWS. Finally, you will deploy the model to the Cloudera AI Inference Service, also running on AWS.
+In this tutorial you will learn how to programmatically train, register, and deploy a model with Cloudera AI multi-cloud. First, you will train a Spark ML model in Cloudera AI on AWS. Then, you will register the model to the AI Registry. Finally, you will deploy the model to the Cloudera AI Inference Service running in a different cloud account, also on AWS.
 
-The general purpose of the demo is to show an end to end multi-cloud AI workflow between Cloudera AI on Azure and on AWS. The same worfklow steps can be applied to other use cases, frameworks, and by connecting multiple environments within AWS or within Azure.
+The general purpose of the demo is to show an end to end multi-cloud AI workflow between different Cloudera AI deployments across separate cloud accounts. The same worfklow steps can be applied to other use cases, frameworks, and clouds for example within Azure cloud accounts or within AWS to / from Azure cloud accounts, and Cloudera on prem environments deployed across data centers.
 
 ### Motivation
 
-Organizations face a tradeoff when deciding where to run GPU workloads: cloud GPUs are easy to provision and ideal for bursty, short-term training needs, but they can be costly over time; on-premises GPU infrastructure, while significantly cheaper at scale, requires procurement cycles, installation effort, and ongoing operational management.
+In Cloudera on Cloud, you can run the same AI platform across multiple, separate cloud accounts. As a result, different organizations or teams can work independently while still following a common architecture. This approach improves security and governance by isolating data, users, and workloads per account, while making it easier to manage costs and access controls.
 
-With Cloudera AI Hybrid Cloud, customers don’t have to choose between these options. The platform provides a unified experience across cloud and on-prem environments, enabling teams to train or fine-tune models using ephemeral cloud GPUs and then seamlessly bring those models back on-prem for lower-cost inference.
-
-Because Cloudera delivers the same environment, APIs, and governance everywhere, organizations can integrate both deployment models in a single workflow without re-architecting or rewriting code.
+Deploying Cloudera AI instances across these accounts allows each environment, such as DEV, UAT, and PRD, to serve a clear purpose: DEV for experimentation and model development, UAT for validation and testing, and PRD for stable, production-grade workloads with Cloudera AI Inference Service. This setup supports safer development cycles, smoother promotion of workloads, and better operational control across the organization.
 
 ### Cloudera AI
 
 Cloudera AI (CAI) is a platform that enables organizations to build, train, and deploy machine learning and artificial intelligence models at scale. One of its key features is the Cloudera AI Inference Service, which allows users to easily deploy large language models (LLMs) for real-time or batch inference. With Cloudera AI, data scientists and engineers can manage and serve LLMs like Llama, Mistral, or open-source GPT models using containerized environments and scalable infrastructure. This service supports secure, low-latency model serving, making it easier to integrate AI into enterprise applications.
 
-### Hybrid Enterprise AI with CAI
-
-Cloudera AI (CAI) is a core component of Cloudera’s hybrid cloud data platform, which is designed to operate seamlessly across both private and public cloud environments. This hybrid architecture allows organizations to deploy AI models securely wherever their data resides—on-premises for sensitive workloads or in the public cloud for greater scalability and flexibility.
-
-With Cloudera AI, enterprises can maintain governance, compliance, and control over their machine learning pipelines while taking advantage of cloud-native capabilities. This ensures that large language models and other AI applications can be deployed and managed securely across diverse IT environments without compromising performance or data privacy.
-
 ## Requirements
 
-This example was built with Cloudera on AWS and Cloudera OnPrem. At time of this writing, all latest component versions were used. In general, previus and/or future component versions will work as well. The component versions used for each environment were:
+This example was built with two Cloudera on AWS environments. At time of this writing, all latest component versions were used. In general, previus and/or future component versions will work as well. The component versions used for each environment were:
 
 ##### Cloudera on AWS Requirements
 
 * Cloudera On AWS - Runtime 7.3.1
 * CAI Workbench 2.0.53
-* AI Registry 1.11.0
-
-##### Cloudera on Prem Requirements
-
-* Cloudera On Prem Private Cloud 1.5.5 on ECS - Runtime 7.13.1
-* CAI Workbench 2.0.49
-* Inference Service 1.4.0
-* AI Registry 1.7.0.
+* Cloudera AI Registry 1.11.0
+* Cloudera AI Inference Service 1.8.0
 
 ##### Additional Requirements
 
@@ -53,10 +39,10 @@ In order to reproduce the example you will need:
 
 ### Step by Step Tutorial
 
-All artifacts are included in this Git repository under the ```hybrid-ai``` folder. You can clone or fork it as needed. https://github.com/pdefusco/CAI_Inf_Service_Articles.git
+All artifacts are included in this Git repository under the ```multicloud-ai``` folder. You can clone or fork it as needed. https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 
 
-### Cloudera AI on AWS
+### Cloudera AI on AWS DEV
 
 ##### 1. Clone the Git Repository as a CAI Project in Cloudera AI on AWS
 
@@ -64,34 +50,34 @@ In Cloudera AI on AWS, log into the Workbench and create a project with the foll
 
 ```
 Project Name: Model Training
-Project Description: Project to Train the PyTorch model in Cloudera AI.
+Project Description: Project to Train a Spark ML model in Cloudera AI.
 Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 Runtimes:
-  JupyterLab Python 3.10 Standard 2025.09
+  PBJ Python 3.10 Standard 2025.09
 ```
 
 ![alt text](img/hybrid-ai-step1.png)
 
 ![alt text](img/hybrid-ai-step2.png)
 
-##### 2. Launch a CAI Session to Train and Register PyTorch Model
+##### 2. Launch a CAI Session to Train and Register SparkML Model
 
 Launch your first CAI Session with PBJ Runtime. You won't need a lot of resources:
 
 ```
-Kernel: Python 3.10 JupyterLab Standard
+Kernel: Python 3.10 PBJ Editor Standard
 Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 ```
 
 First, install the requirements by opening the Terminal and running this command:
 
 ```
-pip3 install -r hybrid-ai/requirements.txt
+pip3 install -r multicloud-ai/requirements.txt
 ```
 
 ![alt text](img/hybrid-ai-requirements.png)
 
-Open notebook ```01_train_pytorch_cloud.ipynb``` and run each cell. No code changes are required.
+Open notebook ```01_train_sparkml_dev.ipynb``` and run each cell. No code changes are required.
 
 ![alt text](img/notebook-code-1.png)
 
@@ -108,7 +94,7 @@ In Cloudera AI on premise, log into the Workbench and create a project with the 
 
 ```
 Project Name: Model Deployment
-Project Description: Project to Deploy the PyTorch model in Cloudera AI.
+Project Description: Project to Deploy a SparkML model in Cloudera AI.
 Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Articles.git
 Runtimes:
   JupyterLab Python 3.11 Standard 2025.09
@@ -142,12 +128,12 @@ Resource Profile: 2 vCPU / 8 iGB Mem / 0 GPU
 Install the requirements by opening the Terminal and running this command:
 
 ```
-pip3 install -r hybrid-ai/requirements.txt
+pip3 install -r multicloud-ai/requirements.txt
 ```
 
 ##### 6. Run the Notebook
 
-Open notebook ```02_deploy_model_onprem.ipynb``` and run the cells. Some limited code changes will be required so run the cells carefully.
+Open notebook ```02_deploy_model_prod.ipynb``` and run the cells. Some limited code changes will be required so run the cells carefully.
 
 Run the cell titled ```Configure CDP control plane credentials``` and input your CDP_ACCESS_KEY_ID and CDP_PRIVATE_KEY for your ***Cloudera on AWS environment user***. This will allow you to connect to the Cloudera AI Registry running in AWS, from the On Prem cluster.  
 
@@ -155,9 +141,7 @@ In the following cell, modify the ```ENVIRONMENT_NAME``` field reflecting the na
 
 ![alt text](img/notebook-code-2.png)
 
-Keep running all cells without any code changes, until you get to the ```DEPLOY MODEL IN LOCAL INFERENCE SERVICE``` section a couple of dozen cells below.
-
-Here, using the CDP CLI, obtain your CDP Token for your ***CDP on Prem environment*** and input it in the ```CDP_TOKEN``` variable. Then, look up the values for the ```CAII_DOMAIN``` and ```MODEL_ID``` variables in the Inference Service and AI Registry UI's respectively, and input them in the notebook. Feel free to update the ```ENDPOINT_NAME``` as you'd like. Leave the ```MODEL_ID``` to ```1``` unless you have registered the model multiple times.
+Keep running all cells without any code changes.
 
 ![alt text](img/hybrid-model-ui.png)
 
@@ -173,9 +157,7 @@ If you want to learn to perform these last steps programmatically without manual
 
 ## Summary & Next Steps
 
-In this tutorial, we demonstrated how to train a PyTorch model in the Public Cloud and deploy it in the Private Cloud with Cloudera AI Hybrid Cloud.  
-
-This end-to-end workflow highlights how you can leverage Cloudera AI in order to utilize ephemeral resources in the Cloud and long-running resources in the Data Center, thereby reducing inferencing costs.
+In this tutorial, we demonstrated how to train and deploy a SparkML model across different Cloudera on Cloud environments. The end-to-end workflow highlights how you can leverage Cloudera AI in order to separate workloads, users and datasets across environments for maximum enterprise AI security and governance while maintaining the same frameworks, runtimes and architecture.
 
 **Additional Resources & Tutorials**
 Explore these helpful tutorials and blogs to learn more about Cloudera AI, the AI Registry, and AI Inference Service:
