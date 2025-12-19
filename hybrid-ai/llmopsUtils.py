@@ -224,7 +224,7 @@ def deploy_model_to_caii(caii_domain, cdp_token, model_id, model_version, endpoi
     deploy_payload = {
         "namespace": "serving-default",
         "name": f"{endpoint_name}",
-        "instance_type": "g5.12xlarge",
+        "instance_type": "c4.4xlarge",
         "task": "INFERENCE",
         "source": {
             "registry_source": {
@@ -234,8 +234,7 @@ def deploy_model_to_caii(caii_domain, cdp_token, model_id, model_version, endpoi
         },
         "resources": {
             "req_cpu": "4",
-            "req_memory": "16Gi",
-            "num_gpus": "4"
+            "req_memory": "16Gi"
         },
         "autoscaling": {
             "min_replicas": "1",
