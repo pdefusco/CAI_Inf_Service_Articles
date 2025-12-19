@@ -86,7 +86,7 @@ Navigate to the ```Registered Models``` page and validate that your PyTorch mode
 ![alt text](img/registered-model.png)
 
 
-### Cloudera AI on Prem
+### Cloudera AI on AWS PRD
 
 ##### 3. Clone the Git Repository as a CAI Project in Cloudera AI On Prem
 
