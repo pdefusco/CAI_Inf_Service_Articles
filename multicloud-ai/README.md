@@ -1,6 +1,6 @@
 # MultiCloud AI: Train and Deploy a SparkML Model in Cloudera AI across Different Cloudera on Cloud Environments
 
-![alt text](img/multi-cloud-sol-arch.png)
+![alt text](img/sol-arch.png)
 
 ## Objective
 
