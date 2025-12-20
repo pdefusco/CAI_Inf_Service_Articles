@@ -1,6 +1,6 @@
-# MultiCloud AI: Train a PyTorch GNN Model in Cloudera AI on Azure and Deploy it in Cloudera AI Inference Service on AWS
+# MultiCloud AI: Train and Deploy a SparkML Model in Cloudera AI across Different Cloudera on Cloud Environments
 
-![alt text](img/hybrid-arch.png)
+![alt text](img/multi-cloud-sol-arch.png)
 
 ## Objective
 
