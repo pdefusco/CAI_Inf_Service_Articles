@@ -75,7 +75,7 @@ First, install the requirements by opening the Terminal and running this command
 pip3 install -r multicloud-ai/requirements.txt
 ```
 
-![alt text](img/multi-cloud-reqs.png)
+![alt text](img/requirements.png)
 
 Open notebook ```01_train_sparkml_dev.py``` and run each cell. No code changes are required.
 
@@ -99,8 +99,6 @@ Initial Setup: -> GIT -> HTTPS -> https://github.com/pdefusco/CAI_Inf_Service_Ar
 Runtimes:
   JupyterLab Python 3.11 Standard 2025.09
 ```
-
-![alt text](../img/project-wizard-1.png)
 
 ![alt text](../img/project-wizard-2.png)
 
@@ -135,23 +133,15 @@ pip3 install -r multicloud-ai/requirements.txt
 
 Open notebook ```02_deploy_model_prod.ipynb``` and run the cells. Some limited code changes will be required so run the cells carefully.
 
-Run the cell titled ```Configure CDP control plane credentials``` and input your CDP_ACCESS_KEY_ID and CDP_PRIVATE_KEY for your ***Cloudera on AWS environment user***. This will allow you to connect to the Cloudera AI Registry running in AWS, from the On Prem cluster.  
+Run the cell titled ```Configure CDP control plane credentials``` and input your CDP_ACCESS_KEY_ID and CDP_PRIVATE_KEY for your ***Cloudera on AWS Dev environment user***. This will allow you to connect to the Cloudera AI Registry running in AWS, from the On Prem cluster.  
 
-In the following cell, modify the ```ENVIRONMENT_NAME``` field reflecting the name of the ***CDP on AWS environment***. See the below screenshot as a reference for both edits.
+In the following cell, modify the ```ENVIRONMENT_NAME``` field reflecting the name of the ***CDP on AWS Production environment***.
 
-![alt text](img/notebook-code-2.png)
+Run all remaining cells without any code changes. Finally, navigate to the Model Endpoints UI and validate your model is deploying.
 
-Keep running all cells without any code changes.
+![alt text](img/deploy-in-progress.png)
 
-![alt text](img/hybrid-model-ui.png)
-
-![alt text](img/hybrid-registry-model-id.png)
-
-Finally, run the remaining two cells to deploy the model to the Cloudera AI Inference Service On Prem. Navigate to the Model Endpoints UI and validate your model is deploying.
-
-![alt text](img/hybrid-model-endpoint-2.png)
-
-![alt text](img/hybrid-model-deployment-3.png)
+![alt text](img/model-deployed.png)
 
 If you want to learn to perform these last steps programmatically without manually looking up variables in the UI, refer to this LLMOps project: [https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/llmops-utils](https://github.com/pdefusco/CAI_Inf_Service_Articles/tree/main/llmops-utils)
 
