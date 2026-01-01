@@ -37,13 +37,17 @@
 # #  Author(s): Paul de Fusco
 #***************************************************************************/
 
+#!pip3 install open-inference-openapi
+#!pip3 install openai
+#!pip install --upgrade cdpcli
+
 # Import inference-related libraries
+from __future__ import print_function
 import httpx
 import json
 import time
 import os
 import subprocess
-from __future__ import print_function
 import cmlapi
 from cmlapi.rest import ApiException
 from urllib.parse import urlparse, urlunparse
@@ -67,16 +71,14 @@ ENDPOINT_NAME = os.environ["ENDPOINT_NAME"] # Enter endpoint name as you'd like 
 HF_TOKEN = os.environ["HF_TOKEN"] # Create Project Env Var with your HF Catalog Token, or set it directly here
 RUNTIME_ID = os.environ["RUNTIME_IDENTIFIER"] # The CAI RUntime ID for the Agent App
 
-
 CAII_DOMAIN = llmopsClient.get_caii_domain(ENVIRONMENT_NAME)
 CDP_TOKEN = llmopsClient.get_ums_jwt_token()
 print("CAI DOMAIN: ", CAII_DOMAIN)
 print("CDP TOKEN: ", CDP_TOKEN)
 
-registryClient = ModelRegistryClient(base_url=REGISTRY_ENDPOINT, bearer_token=TOKEN)
-
-REGISTRY_ENDPOINT = registryClient.get_registry_endpoint(ENVIRONMENT_NAME)
+REGISTRY_ENDPOINT = llmopsClient.get_registry_endpoint(ENVIRONMENT_NAME)
 print("REGISTRY ENDPOINT: ", REGISTRY_ENDPOINT)
+registryClient = ModelRegistryClient(base_url=REGISTRY_ENDPOINT, bearer_token=CDP_TOKEN)
 
 new_model = registryClient.create_model(
     name=REGISTERED_MODEL_NAME,
@@ -105,5 +107,5 @@ print(BASE_URL)
 # Use CML API v2 to launch the Gradio App
 NAME = "AgentApp"
 DESCRIPTION = "A simple Agentic AI App using AI Inference Service and LangGraph"
-createAppdResponse = llmopsClient.createApp(self, NAME, DESCRIPTION, RUNTIME_ID, MODEL_ID, BASE_URL, CDP_TOKEN)
+createAppdResponse = llmopsClient.createApp(NAME, DESCRIPTION, RUNTIME_ID, MODEL_ID, BASE_URL, CDP_TOKEN)
 print(createAppdResponse)
