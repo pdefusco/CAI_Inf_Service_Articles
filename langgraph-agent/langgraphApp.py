@@ -100,7 +100,7 @@ with gr.Blocks() as demo:
     submit_btn.click(fn=process_input, inputs=user_input, outputs=output)
 
 if __name__ == "__main__":
-    demo.queue(concurrency_limit==16).launch(share=False,
+    demo.queue(default_concurrency_limit=16).launch(share=False,
                 show_error=True,
                 server_name='127.0.0.1',
                 server_port=int(os.getenv('CDSW_APP_PORT')))
