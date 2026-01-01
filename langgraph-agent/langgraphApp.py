@@ -21,14 +21,23 @@ class AgentState(TypedDict):
 # Tools
 @tool
 def add(a: int, b: int):
+    """
+    This tool takes in two integers as inputs and returns their sum.
+    """
     return a + b
 
 @tool
 def subtract(a: int, b: int):
+    """
+    This tool takes in two integers as inputs and returns their difference.
+    """
     return a - b
 
 @tool
 def multiply(a: int, b: int):
+    """
+    This tool takes in two integers as inputs and returns their product.
+    """
     return a * b
 
 tools = [add, subtract, multiply]
@@ -91,7 +100,7 @@ with gr.Blocks() as demo:
     submit_btn.click(fn=process_input, inputs=user_input, outputs=output)
 
 if __name__ == "__main__":
-    demo.queue(concurrency_count=16).launch(share=False,
+    demo.queue(concurrency_limit==16).launch(share=False,
                 show_error=True,
                 server_name='127.0.0.1',
                 server_port=int(os.getenv('CDSW_APP_PORT')))
